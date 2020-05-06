@@ -1330,17 +1330,16 @@ dyn_mat<typename Derived::Scalar> grams(const std::vector<Derived>& As) {
 
     dyn_mat<typename Derived::Scalar> result(As[0].rows(), outvecs.size());
 
-    idx cnt = 0;
+    idx tmp = 0;
     for (auto&& elem : outvecs) {
         double normA = norm(elem);
         if (normA > 0) // we add only the non-zero vectors
         {
-            result.col(cnt) = elem / normA;
-            ++cnt;
+            result.col(tmp++) = elem / normA;
         }
     }
 
-    return result.block(0, 0, As[0].rows(), cnt);
+    return result.block(0, 0, As[0].rows(), tmp);
 }
 
 // deduce the template parameters from initializer_list

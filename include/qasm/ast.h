@@ -576,7 +576,8 @@ class Varinfo : public IDisplay {
 
     /**
      * \brief Try to interpret the access as a classical register in a given
-     * context \note Throws qpp:exception::SemanticError if ill-typed
+     * context
+     * \note Throws qpp:exception::SemanticError if ill-typed
      *
      * \param ctx The translation context
      * \return List of bit indices corresponding to the variable access
@@ -608,7 +609,8 @@ class Varinfo : public IDisplay {
 
     /**
      * \brief Try to interpret the access as a quantum register in a given
-     * context \note Throws qpp:exception::SemanticError if ill-typed
+     * context
+     * \note Throws qpp:exception::SemanticError if ill-typed
      *
      * \param ctx The translation context
      * \return List of virtual qubit indices corresponding to the variable

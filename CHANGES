@@ -1,6 +1,29 @@
 Pre-release
     - Enabled documentation searching by setting SEARCHENGINE = ON in
       "Doxyfile"
+    - Implemented the following static member functions qpp::QCircuit::
+          - is_CTRL()     - gate step is a controlled gate or not
+          - is_cCTRL()    - gate step is a classically-controlled gate or not
+          - is_non_CTRL() - gate step is a non-controlled gate or not
+    - Changed qpp::QCircuit::
+          - is_clean()  -> is_clean_qudit()
+          - get_clean() -> get_clean_qudits()
+    - Split qpp::QCircuit::remove_clean() into qpp::QCircuit::
+          - remove_clean_qudit()  - removes single clean qudit from quantum
+                                    circuit description
+          - remove_clean_qudits() - removes list of clean qudits from quantum
+                                    circuit description
+    - Implemented qpp::QCircuit::
+          - is_clean_dit()      - true if the classical dit is clean (not used),
+                                  false otherwise
+          - get_clean_dits()    - list of clean classical dits
+          - remove_clean_dit()  - removes single clean classical dit from
+                                  quantum circuit description
+          - remove_clean_dits() - removes list of clean classical dits from
+                                  quantum circuit description
+    - Modified the signature of qpp::QCircuit::compress() to
+      qpp::QCircuit::compress(bool compress_dits = false) so one can compress
+      the clean classical dits as well
 
 Version 2.3 - 2 May 2020
     - Added the following examples in the "examples" directory
@@ -36,13 +59,13 @@ Version 2.2 - 14 April 2020
     - Added the new type qpp::qram for representing qRAM data ["types.h"]
     - Thanks to @DevelopDaily https://github.com/softwareQinc/qpp/issues/72,
       implemented qpp::QCircuit::
-          compress()     - removes unused qudits from quantum circuit
-                           description
-          get_clean()    - list of clean qudits
-          is_clean()     - true if the qudit is clean (not used), false
-                           otherwise
-          remove_clean() - removes single/list of clean qudits from quantum
-                           circuit description
+          is_clean      - true if the qudit is clean (not used), false
+                          otherwise
+          get_clean    - list of clean qudits
+          remove_clean - removes single/list of clean qudits from quantum
+                         circuit description
+          compress()   - removes unused qudits from quantum circuit
+                         description
     - More robust MATLAB integration, detects MATLAB automatically when the
       CMake flag -DWITH_MATLAB=ON is specified; if CMake can not detect it
       automatically, pass the additional CMake flag
@@ -112,9 +135,9 @@ Version 2.0 - 24 August 2019
                                               construction
     - API change in qpp::QCircuit::cCTRL*(), now accepts an additional "shift"
       on the control dits
-    - Split qpp::QCircuit::get_depth() into:
-          qpp::QCircuit::get_gate_depth()        - gate depth
-          qpp::QCircuit::get_measurement_depth() - measurement depth
+    - Split qpp::QCircuit::get_depth() into qpp::QCircuit::
+          get_gate_depth()        - gate depth
+          get_measurement_depth() - measurement depth
       for a finer control over depth computations
     - Added support for non-destructive measurements in "instruments.h" by
       modifying the API for:
