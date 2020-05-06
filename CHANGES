@@ -24,6 +24,10 @@ Pre-release
     - Modified the signature of qpp::QCircuit::compress() to
       qpp::QCircuit::compress(bool compress_dits = false) so one can compress
       the clean classical dits as well
+    - Removed the measured/non-measured qudits from qpp::QCircuit::display() and
+      qpp::QEngine::display() since they make the output very large for quantum
+      circuit descriptions with many qudits. Kept them in the corresponding
+      to_JSON() member functions.
 
 Version 2.3 - 2 May 2020
     - Added the following examples in the "examples" directory

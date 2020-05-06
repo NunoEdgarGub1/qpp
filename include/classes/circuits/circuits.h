@@ -3533,12 +3533,18 @@ class QCircuit : public IDisplay, public IJSON {
             throw exception::OutOfRange("qpp::QCircuit::remove_clean_dit()");
         // END EXCEPTION CHECKS
 
-        for (auto&& elem : gates_) {
-            if (is_cCTRL(elem)) {
-                for (idx& pos : elem.ctrl_) {
+        for (auto&& gate : gates_) {
+            if (is_cCTRL(gate)) {
+                for (idx& pos : gate.ctrl_) {
                     if (pos > target)
                         --pos;
                 }
+            }
+        }
+
+        for (auto&& measurement : measurements_) {
+            if (measurement.c_reg_ > target) {
+                --measurement.c_reg_;
             }
         }
 
@@ -3902,10 +3908,13 @@ class QCircuit : public IDisplay, public IJSON {
         os << "total gate depth: " << get_gate_depth() << '\n';
         os << "total measurement count: " << get_measurement_count() << '\n';
         os << "total measurement depth: " << get_measurement_depth() << '\n';
-        os << "total depth: " << get_depth() << '\n';
-        os << "measured/discarded (destructive): " << disp(get_measured(), ", ")
-           << '\n';
+        os << "total depth: " << get_depth();
+
+        /*
+        os << "\nmeasured/discarded (destructive): "
+           << disp(get_measured(), ", ") << '\n';
         os << "non-measured/non-discarded: " << disp(get_non_measured(), ", ");
+        */
 
         return os;
     }
