@@ -10,10 +10,10 @@ in the Wiki or in the reminder of this document.
 
 In this section I assume that you use a POSIX compliant system (e.g. UNIX-like).
 To get started with [Quantum++](https://github.com/softwareqinc/qpp), first
-install the [Eigen 3](http://eigen.tuxfamily.org/) library into your home directory, 
+install the [Eigen 3](http://eigen.tuxfamily.org/) library into your home directory, 
 as `$HOME/eigen`. You can change the name of the directory, but in the
 current document I will use `$HOME/eigen` as the location of the
-[Eigen 3](http://eigen.tuxfamily.org/) library. Next, download or clone
+[Eigen 3](http://eigen.tuxfamily.org/) library. Next, download or clone
 [Quantum++](https://github.com/softwareqinc/qpp) library into the home
 directory as `$HOME/qpp`. Finally, make sure that your compiler supports
 C++11 and preferably [OpenMP](http://openmp.org/). As a compiler I
